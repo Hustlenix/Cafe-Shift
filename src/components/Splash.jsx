@@ -12,7 +12,8 @@ export default function Splash({ onDone }) {
     return (
         <div className={fading ? 'splash fade' : 'splash'} onClick={enter}>
             <img className="icon splash-icon" src="/icons/Croissant.png" alt="" width="96" height="96"/>
-            <h1>CAFE OF<br />ELYSIUM</h1>
+            <h1>CAFE<br />SHIFT</h1>
+            <p className="byline">by hustlenix</p>
             <p className="blink">click to enter</p>
         </div>
     )

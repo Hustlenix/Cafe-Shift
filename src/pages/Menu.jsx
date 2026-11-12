@@ -18,7 +18,7 @@ export default function Menu() {
                 onClick={() => {sessionStorage.getItem('bookSeen', '1'); setOpen(true)}}
                 >
                     <span className="cover-title">MENU</span>
-                    <span className="cover-sub">Cafe of Elysium</span>
+                    <span className="cover-sub">Cafe Shift by Hustlenix</span>
                     <span className="blink">click to open</span>
                 </button>
             </div>

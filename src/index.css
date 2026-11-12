@@ -300,6 +300,14 @@ h3 { font-size: 14px; margin-top: 28px;}
 .splash h1 { font-size: 26px; line-height: 1.6; margin: 0;}
 .splash small { position: absolute; bottom: 24px; opacity: 0.6; }
 
+.splash .byline {
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  margin: -10px 0 0;
+}
+
 .splash-icon { animation: hop 0.8s steps(2) infinite;}
 
 .dots span { animation: blink 1s steps(2) infinite;}

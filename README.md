@@ -1,8 +1,8 @@
-## Cafe of Elysium
+## Cafe Shift by Hustlenix
 
 A cozy pixel-art cafe ordering system. Browse the menu book, fill up your tray, send the order, and watch it show up on the kitchen's ticket rail.
 
-[**Live Demo**](https://cafe-of-elysium.vercel.app/)
+Live demo: _link coming soon, redeploying under Hustlenix._
 
 ![The open menu book](screenshots/menu.png)
 
@@ -63,8 +63,8 @@ The orders are saved in the localStorage, so the sync works between tabs in one 
 ## Run it locally
 
 ```
-git clone https://github.com/shiz1ee/Cafe-of-Elysium.git
-cd Cafe-of-Elysium
+git clone https://github.com/Hustlenix/Cafe-Shift.git
+cd Cafe-Shift
 npm install
 npm run dev
 ```

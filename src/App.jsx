@@ -21,7 +21,7 @@ export default function App() {
   />
 )}
       <header>
-        <NavLink to="/" className="logo">Cafe of Elysium</NavLink>
+        <NavLink to="/" className="logo">Cafe Shift by Hustlenix</NavLink>
         <nav>
           <NavLink to="/" end>Menu</NavLink>
           <NavLink to="/cart">Cart{count > 0 && <span className="badge">{count}</span>}</NavLink>

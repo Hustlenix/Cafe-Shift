@@ -59,7 +59,11 @@ The orders are saved in the localStorage, so the sync works between tabs in one 
   - React Router(Hash)
   - React Context for the shared cart and orders
   - Plain CSS with a matte light brown palette, Press Start 2P and VT323 fonts
- 
+
+## AI Usage
+
+I used AI to help me to use the resouceces that i bought from itch.io and it helped me in pushing the game's code to github, thats how it looks like ai coded, but i am the one who coded it. it also helped me in planning the game sturucture like it was a backbone for me, i mean it said in which direction is shloud go and stufff.
+
 ## Run it locally
 
 ```

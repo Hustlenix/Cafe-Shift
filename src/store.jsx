@@ -27,10 +27,11 @@ export function StoreProvider({children}) {
 
     const add = (id) => setCart((c) => ({ ...c, [id]: (c[id] || 0) + 1}))
 
+    // Pressing "-" at one stops there; the x button is how a line is removed.
     const sub = (id) => setCart((c) => {
         const n = { ...c}
-        if ((n[id] || 0) <= 1) delete n[id]
-        else n[id] -= 1
+        if (!n[id] || n[id] <= 1) return n
+        n[id] -= 1
         return n
     })
 
@@ -52,12 +53,15 @@ export function StoreProvider({children}) {
 
     const clearDone = () =>
         setOrders((o) => o.map((x) => (x.status === 'done' ? { ...x, hidden: true } : x)))
+
+    const restoreOrders = (ids) =>
+        setOrders((o) => o.map((x) => (ids.includes(x.id) ? { ...x, hidden: false } : x)))
     
 
     const count = Object.values(cart).reduce((a, b) => a + b, 0)
 
     return (
-        <StoreContext.Provider value={{cart, add, count, sub, remove, orders, placeOrder, setStatus, clearDone}}>
+        <StoreContext.Provider value={{cart, add, count, sub, remove, orders, placeOrder, setStatus, clearDone, restoreOrders}}>
             {children}
         </StoreContext.Provider>
     )

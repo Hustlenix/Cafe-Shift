@@ -88,7 +88,7 @@ export default function Cart() {
               <li key={l.id}>
                 <img className="icon" src={l.img} alt="" width="48" height="48" />
                 <span className="grow">{l.name}</span>
-                <button className="mini" onClick={() => sub(l.id)} aria-label={`Remove one ${l.name}`}>-</button>
+                <button className="mini" onClick={() => sub(l.id)} aria-label={`Remove one ${l.name}`} disabled={l.qty <= 1}>-</button>
                 <b>{l.qty}</b>
                 <button className="mini" onClick={() => add(l.id)} aria-label={`Add one ${l.name}`}>+</button>
                 <span className="amt">${(l.price * l.qty).toFixed(2)}</span>

@@ -52,15 +52,29 @@ function Ticket({ order, index, now }) {
 
 export default function Kitchen() {
     const [now, setNow] = useState(Date.now())
+    const [cleared, setCleared] = useState(null)
     useEffect(() => {
         const id = setInterval(() => setNow(Date.now()), 1000)
         return () => clearInterval(id)
     }, [])
 
-    const { orders, clearDone} = useStore()
+    const { orders, clearDone, restoreOrders } = useStore()
     const visible = orders.filter((o) => !o.hidden)
     const active = visible.filter((o)=> o.status !== 'done')
     const done = visible.filter((o) => o.status === 'done')
+
+    // Clearing is a housekeeping action, so it is reversible: remember which
+    // tickets went away and offer them back until the next clear.
+    const clear = () => {
+        const ids = done.map((o) => o.id)
+        clearDone()
+        setCleared({ ids, count: ids.length })
+    }
+
+    const undoClear = () => {
+        restoreOrders(cleared.ids)
+        setCleared(null)
+    }
 
     //foer counting orders and including the cleared ones
     const tally = {}
@@ -88,11 +102,18 @@ export default function Kitchen() {
                 {active.map((o, i) => <Ticket key={o.id} order={o} index={i} now={now} />)}
             </div>
 
+            {cleared && (
+                <p className="ok" role="status">
+                    Cleared {cleared.count} finished {cleared.count === 1 ? 'order' : 'orders'}.{' '}
+                    <button className="undo" onClick={undoClear}>Undo</button>
+                </p>
+            )}
+
             {done.length > 0 && (
                 <>
                     <div className="row between">
                         <h2 className="subhead">Finished</h2>
-                        <button className="btn" onClick={clearDone}>Clear finished</button>
+                        <button className="btn" onClick={clear}>Clear finished</button>
                     </div>
                     <div className="tickets">
                         {done.map((o, i) => <Ticket key={o.id} order={o} index={i} now={now} />)}

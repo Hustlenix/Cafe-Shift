@@ -5,7 +5,9 @@ const VOL = 0.3
 
 export default function Music() {
     const audio = useRef(null)
-    const [muted, setMuted] = useState(() => localStorage.getItem('muted') === '1')
+    // Music is opt-in: it stays off until the button is pressed, unless the
+    // visitor turned it on during an earlier visit.
+    const [muted, setMuted] = useState(() => localStorage.getItem('muted') !== '0')
     const mutedRef = useRef(muted)
 
     useEffect(() => { mutedRef.current = muted }, [muted])

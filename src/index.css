@@ -12,6 +12,13 @@
 
 * {box-sizing: border-box;}
 
+/* One focus ring for the whole app: the browser default is a 1px line that
+   disappears beside the 3px borders. */
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
 body {
   margin: 0;
   background: var(--cream);
@@ -126,7 +133,9 @@ h2 { font-size: 18px;}
   font-family: 'Press Start 2P', monospace;
   font-size: 10px;
   padding: 10px 12px;
-  color: var(--ink);
+  /* Same darker ink as the Add buttons: four of the seven category colours
+     fall below 4.5:1 with the standard ink. */
+  color: var(--ink-strong);
   background: var(--tan);
   border: 3px solid var(--ink);
   box-shadow: 3px 3px 0 var(--ink);
@@ -198,6 +207,12 @@ h2 { font-size: 18px;}
   cursor: pointer;
 }
 
+.mini:disabled {
+  opacity: 0.45;
+  box-shadow: none;
+  cursor: default;
+}
+
 .total {
   text-align: right;
   font-size: 28px;
@@ -222,6 +237,16 @@ input {
   color: var(--ink-deep);
   border: 3px solid var(--ink);
   padding: 8px 12px;
+}
+
+.undo {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0 2px;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .confirm {
@@ -360,7 +385,7 @@ h3 { font-size: 14px; margin-top: 28px;}
   font-family: 'VT323', monospace;
   font-size: 22px;
   letter-spacing: 1px;
-  opacity: 0.7;
+  opacity: 0.8;
   margin: -10px 0 0;
 }
 
@@ -388,7 +413,7 @@ h3 { font-size: 14px; margin-top: 28px;}
 .dots span:nth-child(2) {animation-delay: 0.2s;}
 .dots span:nth-child(3) {animation-delay: 0.4s;}
 
-@keyframes blink { 50% {opacity: 0;}}
+@keyframes blink { 50% {opacity: 0.9;}}
 
 .mute {
   position: fixed;
@@ -586,6 +611,18 @@ h3 { font-size: 14px; margin-top: 28px;}
 
 .ticket.very-late { background: #f1cfc4; border-top-color: #b5483a;}
 .ticket.very-late .timer { color: #8f2f22; opacity: 1;}
+
+/* Phones and tablets: make the small controls finger-sized. The desktop
+   layout keeps its tighter pixel proportions. */
+@media (pointer: coarse) {
+  .tab, .btn { min-height: 44px; }
+  .mini { width: 44px; height: 44px; }
+  /* Finger-sized +/-/x no longer fit beside the item name on a narrow
+     screen, so the name takes the first line and the controls the second. */
+  .lines li { flex-wrap: wrap; row-gap: 8px; }
+  .lines li .grow { flex: 1 1 calc(100% - 58px); }
+  .lines li .amt { margin-left: auto; }
+}
 
 /* Anyone who has asked their system for less motion gets a still page:
    the blinking prompts, the hopping croissant, the book opening and the

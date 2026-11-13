@@ -56,7 +56,7 @@ export default function Menu() {
 
             <section className="page right"> 
                 <div className="grid">
-                    {ITEMS.filter((item) => item.cat === cat).map((item) => (
+                    {ITEMS.filter((item) => item.cat === cat && item.id !== special.id).map((item) => (
                         <div className="card" key={item.id}>
                             <img className="icon" src={item.img} alt={item.name} width="96" height= "96" />
                             <div className="item-name">{item.name}</div>

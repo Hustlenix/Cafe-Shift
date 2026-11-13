@@ -24,6 +24,26 @@ h1, h2, h3 {
   font-family: 'Press Start 2P', monospace;
 }
 
+/* Page titles are now h1 but keep the size and spacing the h2 had, so
+   promoting them does not move anything on screen. */
+.page-title { font-size: 18px; margin: 0.83em 0; }
+
+/* Section titles are now h2 but keep the smaller h3 look. */
+.subhead { font-size: 14px; margin-top: 28px; }
+
+/* Present for screen readers, invisible on screen. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -40,6 +60,9 @@ header {
   font-size: 14px;
   color: var(--ink);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 nav { display: flex; gap: 10px;}
@@ -51,6 +74,9 @@ nav a {
   background: var(--paper);
   border: 3px solid var(--ink);
   box-shadow: 3px 3px 0 var(--brown);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 nav a.active { background: var(--brown); color: var(--ink-strong);}
@@ -206,7 +232,7 @@ input {
   box-shadow: 4px 4px 0 var(--brown);
 }
 
-.confirm h3 { margin: 0 0 10px; font-size: 12px; }
+.confirm h2 { margin: 0 0 10px; font-size: 12px; }
 
 .confirm-lines { list-style: none; padding: 0; margin: 0; }
 
@@ -560,3 +586,14 @@ h3 { font-size: 14px; margin-top: 28px;}
 
 .ticket.very-late { background: #f1cfc4; border-top-color: #b5483a;}
 .ticket.very-late .timer { color: #8f2f22; opacity: 1;}
+
+/* Anyone who has asked their system for less motion gets a still page:
+   the blinking prompts, the hopping croissant, the book opening and the
+   splash fade all become instant. Nothing here is needed to use the app. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

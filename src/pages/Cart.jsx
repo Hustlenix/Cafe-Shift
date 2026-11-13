@@ -55,7 +55,7 @@ export default function Cart() {
 
   return (
     <div className="cart-page">
-      <h2>Your tray</h2>
+      <h1 className="page-title">Your tray</h1>
 
       {lines.length === 0 ? (
         <p>
@@ -63,7 +63,7 @@ export default function Cart() {
         </p>
       ) : confirming ? (
         <section className="confirm" aria-labelledby="confirm-heading">
-          <h3 id="confirm-heading">Check your order</h3>
+          <h2 id="confirm-heading">Check your order</h2>
           <ul className="confirm-lines">
             {lines.map((l) => (
               <li key={l.id}>
@@ -118,7 +118,7 @@ export default function Cart() {
 
       {orders.length > 0 && (
         <>
-          <h3>Your orders</h3>
+          <h2 className="subhead">Your orders</h2>
           <ul className="status-list">
             {[...orders].reverse().map((o) => (
               <li key={o.id}>

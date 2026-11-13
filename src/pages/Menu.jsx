@@ -13,6 +13,7 @@ export default function Menu() {
     if (!open) {
         return (
             <div className="book-wrap">
+                <h1 className="sr-only">Menu</h1>
                 <button
                 className="cover"
                 onClick={() => {sessionStorage.setItem('bookSeen', '1'); setOpen(true)}}
@@ -27,6 +28,7 @@ export default function Menu() {
 
     return (
         <div className="book menu-open">
+            <h1 className="sr-only">Menu</h1>
             <div className="tabs">
                 {CATEGORIES.map((c) => (
                     <button

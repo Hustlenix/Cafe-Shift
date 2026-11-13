@@ -73,7 +73,7 @@ export default function Kitchen() {
 
     return (
         <div>
-            <h2>Kitchen</h2>
+            <h1 className="page-title">Kitchen</h1>
             <div className="stats">
                 <div className="stat"><span>Orders</span><b>{orders.length}</b></div>
                 <div className="stat"><span>Most ordered</span><b>{top ? `${top[0]} (${top[1]})` : '-'}</b></div>
@@ -91,7 +91,7 @@ export default function Kitchen() {
             {done.length > 0 && (
                 <>
                     <div className="row between">
-                        <h3>Finished</h3>
+                        <h2 className="subhead">Finished</h2>
                         <button className="btn" onClick={clearDone}>Clear finished</button>
                     </div>
                     <div className="tickets">

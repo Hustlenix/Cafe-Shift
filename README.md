@@ -2,7 +2,7 @@
 
 A cozy pixel-art cafe ordering system. Browse the menu book, fill up your tray, send the order, and watch it show up on the kitchen's ticket rail.
 
-Live demo: _link coming soon, redeploying under Hustlenix._
+[**Live Demo**](https://cafe-shift-hustlenix.vercel.app/)
 
 ![The open menu book](screenshots/menu.png)
 

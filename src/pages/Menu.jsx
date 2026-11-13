@@ -15,7 +15,7 @@ export default function Menu() {
             <div className="book-wrap">
                 <button
                 className="cover"
-                onClick={() => {sessionStorage.getItem('bookSeen', '1'); setOpen(true)}}
+                onClick={() => {sessionStorage.setItem('bookSeen', '1'); setOpen(true)}}
                 >
                     <span className="cover-title">MENU</span>
                     <span className="cover-sub">Cafe Shift by Hustlenix</span>

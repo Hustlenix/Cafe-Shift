@@ -44,11 +44,11 @@ export default function Cart() {
               <li key={l.id}>
                 <img className="icon" src={l.img} alt="" width="48" height="48" />
                 <span className="grow">{l.name}</span>
-                <button className="mini" onClick={() => sub(l.id)}>-</button>
+                <button className="mini" onClick={() => sub(l.id)} aria-label={`Remove one ${l.name}`}>-</button>
                 <b>{l.qty}</b>
-                <button className="mini" onClick={() => add(l.id)}>+</button>
+                <button className="mini" onClick={() => add(l.id)} aria-label={`Add one ${l.name}`}>+</button>
                 <span className="amt">${(l.price * l.qty).toFixed(2)}</span>
-                <button className="mini" onClick={() => remove(l.id)}>x</button>
+                <button className="mini" onClick={() => remove(l.id)} aria-label={`Remove ${l.name} from tray`}>x</button>
               </li>
             ))}
           </ul>
@@ -56,6 +56,7 @@ export default function Cart() {
 
           <div className="row">
             <input
+              aria-label="Your name or table number"
               placeholder="Your name or table no."
               value={name}
               onChange={(e) => setName(e.target.value)}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Splash({ onDone }) {
     const [fading, setFading] = useState(false)
@@ -6,7 +6,7 @@ export default function Splash({ onDone }) {
     const enter = () => {
         if (fading) return
         setFading(true)
-        setTimeout(onDone, 1100) 
+        setTimeout(onDone, 1100)
     }
 
     return (
@@ -14,7 +14,9 @@ export default function Splash({ onDone }) {
             <img className="icon splash-icon" src="/icons/Croissant.png" alt="" width="96" height="96"/>
             <h1>CAFE<br />SHIFT</h1>
             <p className="byline">by hustlenix</p>
-            <p className="blink">click to enter</p>
+            {/* A real button, so Enter and Space work natively. The click
+                bubbles up to the splash, so clicking anywhere still enters. */}
+            <button type="button" className="enter blink">click to enter</button>
         </div>
     )
-} 
+}

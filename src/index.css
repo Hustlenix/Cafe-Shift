@@ -4,6 +4,7 @@
   --tan: #d9b88f;
   --brown: #b98a5e;
   --ink: #4a3224;
+  --ink-strong: #3a2619;
   --green: #7a9a5b;
   --orange: #d98a4a;
 }
@@ -51,7 +52,7 @@ nav a {
   box-shadow: 3px 3px 0 var(--brown);
 }
 
-nav a.active { background: var(--brown);}
+nav a.active { background: var(--brown); color: var(--ink-strong);}
 
 main { padding: 20px;}
 h2 { font-size: 18px;}
@@ -117,7 +118,7 @@ h2 { font-size: 18px;}
   font-size: 10px;
   margin-top: 8px;
   padding: 8px 10px;
-  color: var(--ink);
+  color: var(--ink-strong);
   background: var(--brown);
   border: 3px solid var(--ink);
   box-shadow: 3px 3px 0 var(--ink);
@@ -309,6 +310,24 @@ h3 { font-size: 14px; margin-top: 28px;}
 }
 
 .splash-icon { animation: hop 0.8s steps(2) infinite;}
+
+.splash .enter {
+  font: inherit;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+/* A blinking control is hard to track once it has keyboard focus,
+   so hold it steady while focused. */
+.splash .enter:focus-visible {
+  animation: none;
+  opacity: 1;
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
 
 .dots span { animation: blink 1s steps(2) infinite;}
 .dots span:nth-child(2) {animation-delay: 0.2s;}

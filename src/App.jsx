@@ -20,6 +20,7 @@ export default function App() {
     }}
   />
 )}
+      <div inert={splash}>
       <header>
         <NavLink to="/" className="logo">Cafe Shift by Hustlenix</NavLink>
         <nav>
@@ -39,6 +40,7 @@ export default function App() {
   Dessert icons by Ellielza (Ellie Jerram), CC BY 4.0 · Music: Cozy &amp; Cute Music by ignatiuscrose (Courtney Rose), CC BY 4.0
 </footer>
 <Music />
+      </div>
     </>
   )
 }

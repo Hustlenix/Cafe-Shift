@@ -61,7 +61,7 @@ export default function Music() {
     }
 
     return (
-        <button className="mute" onClick={toggle} aria-label={muted ? 'Unmute music' : 'Mute music'}>
+        <button className="mute" onClick={toggle} aria-label={muted ? 'Music off, unmute music' : 'Music on, mute music'}>
             Music<br />{muted ? 'off' : 'on'}
         </button>
     )

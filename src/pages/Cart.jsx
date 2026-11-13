@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ITEMS } from '../data.js'
 import { useStore } from '../store.jsx'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { playSound } from '../sounds.js'
 
 
@@ -11,6 +11,9 @@ export default function Cart() {
   const { cart, add, sub, remove, placeOrder, orders } = useStore()
   const [name, setName] = useState('')
   const [placed, setPlaced] = useState(null)
+  const [confirming, setConfirming] = useState(false)
+  const reviewRef = useRef(null)
+  const cancelled = useRef(false)
 
   // turn { ChocolateCake: 2 } into full item info plus quantity
   const lines = Object.entries(cart)
@@ -19,12 +22,33 @@ export default function Cart() {
 
   const total = lines.reduce((sum, l) => sum + l.price * l.qty, 0)
 
+  // Returning from the review step drops focus on the floor, so put it back
+  // on the button that opened it. The guard keeps this from stealing focus
+  // when the page first loads.
+  useEffect(() => {
+    if (!confirming && cancelled.current) {
+      cancelled.current = false
+      reviewRef.current?.focus()
+    }
+  }, [confirming])
+
+  const review = () => {
+    setPlaced(null)
+    setConfirming(true)
+  }
+
+  const cancel = () => {
+    cancelled.current = true
+    setConfirming(false)
+  }
+
   const place = () => {
     const id = placeOrder(
         name.trim(),
         lines.map((l) => ({name: l.name, qty: l.qty, price: l.price }))
     )
     setPlaced(id)
+    setConfirming(false)
     playSound('/sounds/ding.mp3')
     setName('')
   }
@@ -37,6 +61,26 @@ export default function Cart() {
         <p>
           The tray is empty. <Link to="/">Open the menu</Link> and pick something.
         </p>
+      ) : confirming ? (
+        <section className="confirm" aria-labelledby="confirm-heading">
+          <h3 id="confirm-heading">Check your order</h3>
+          <ul className="confirm-lines">
+            {lines.map((l) => (
+              <li key={l.id}>
+                <span>{l.qty} &times; {l.name}</span>
+                <span className="amt">${(l.price * l.qty).toFixed(2)}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="confirm-total">Total: ${total.toFixed(2)}</div>
+          <p className="confirm-name">For: {name.trim() || 'Guest'}</p>
+          <div className="row">
+            {/* Focus lands here on purpose: it is the one action that cannot
+                be undone, so it should take a deliberate key press. */}
+            <button className="btn" onClick={place} autoFocus>Confirm order</button>
+            <button className="btn" onClick={cancel}>Keep editing</button>
+          </div>
+        </section>
       ) : (
         <>
           <ul className="lines">
@@ -61,12 +105,16 @@ export default function Cart() {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            <button className="btn" onClick={place}>Place order</button>
+            <button ref={reviewRef} className="btn" onClick={review}>Review order</button>
           </div>
         </>
       )}
 
-      {placed && <p className="ok">Order #{placed} sent to the kitchen!</p>}
+      {placed && (
+        <p className="ok" role="status">
+          Order #{placed} sent to the kitchen!
+        </p>
+      )}
 
       {orders.length > 0 && (
         <>
